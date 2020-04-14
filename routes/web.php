@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('master');
+    return view('welcome');
+});
+
+Route::get('/coba', function(){
+    return view('auth.login1');
 });
 
 Auth::routes();
