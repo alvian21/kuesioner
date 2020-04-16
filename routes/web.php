@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,15 @@ Route::get('/coba', function(){
     return view('auth.login1');
 });
 
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'admin',
+                'middelware'=>'Auth'
+            ], function () {
+                Route::get('/home', 'HomeController@index')->name('home');
+
+                Route::resource('category','CategoryController');
+            });
+
+
