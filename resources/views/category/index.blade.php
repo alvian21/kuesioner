@@ -1,23 +1,18 @@
 @extends('master')
 @section('content')
-
     <div class="row">
       <div class="col">
         <div class="card">
           <!-- Card header -->
           <div class="card-header border-0">
-
-            <div class="row">
-
-
-                <div class="col-md-3">
+            <div class="row align-items-center">
+                <div class="col-8">
                     <h3 class="mb-0">Kategori</h3>
                 </div>
-                <div class="col-md-9 text-right mb-3">
-                    <a href="#" class="btn btn-primary">Buat Kategori</a>
+                <div class="col-4 text-right">
+                    <a href="{{route('category.create')}}" class="btn btn-primary">Buat Kategori</a>
                 </div>
-            </div>
-
+              </div>
           </div>
           <!-- Light table -->
           <div class="table-responsive">
@@ -27,8 +22,7 @@
                   <th scope="col" class="sort" data-sort="name">Project</th>
                   <th scope="col" class="sort" data-sort="budget">Budget</th>
                   <th scope="col" class="sort" data-sort="status">Status</th>
-                  <th scope="col">Users</th>
-                  <th scope="col" class="sort" data-sort="completion">Completion</th>
+
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -92,7 +86,7 @@
                     </div>
                   </td>
                 </tr>
-               
+
               </tbody>
             </table>
           </div>
@@ -125,6 +119,4 @@
         </div>
       </div>
     </div>
-
-
 @endsection
