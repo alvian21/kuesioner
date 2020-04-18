@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin',
                 Route::get('/home', 'HomeController@index')->name('home');
 
                 Route::resource('category','CategoryController');
+                Route::resource('kuesioner','KuesionerController');
             });
 
 
