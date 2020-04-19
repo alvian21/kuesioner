@@ -20,6 +20,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="csrf-token" content="{{ csrf_token() }}"><meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="Creative Tim">
   <title>Dashboard</title>
   <!-- Favicon -->
@@ -198,6 +199,7 @@
   <script src="{{asset('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{asset('assets/js/argon.js?v=1.2.0')}}"></script>
+  @yield('script')
 </body>
 
 </html>

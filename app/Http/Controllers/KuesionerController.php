@@ -92,8 +92,13 @@ class KuesionerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+
+        if($request->get('delete')){
+            $data = Kuesioner::find($request->get('id'));
+            $data->delete();
+            echo 'berhasil';
+        }
     }
 }

@@ -46,9 +46,8 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Edit</a>
+                      <button class="dropdown-item hapus" data-id="{{$row->id}}">Hapus</button>
                       </div>
                     </div>
                   </td>
@@ -87,4 +86,49 @@
         </div>
       </div>
     </div>
+@endsection
+
+
+@section('script')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.hapus').on('click', function(){
+            var id = $(this).data('id');
+            swal({
+            title: "Apa kamu yakin?",
+            text: "Setelah dihapus, Anda tidak akan dapat memulihkan data ini!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                ajax();
+               $.ajax({
+                    url:'/admin/kuesioner/'+id,
+                    method:'DELETE',
+                    data:{'id':id,'delete':1},
+                    success:function(data)
+                    {
+                        window.setTimeout(function(){window.location.reload()}, 1000);
+                    }
+               });
+            }
+            });
+
+        });
+
+
+        function ajax()
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        }
+    });
+
+</script>
 @endsection
