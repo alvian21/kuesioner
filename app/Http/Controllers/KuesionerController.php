@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Category;
+use App\Kuesioner;
+use App\User;
+use Illuminate\Support\Facades\Validator;
 
 class KuesionerController extends Controller
 {
@@ -13,7 +18,8 @@ class KuesionerController extends Controller
      */
     public function index()
     {
-        return view('kuesioner.index');
+        $user = User::find(Auth()->user()->id);
+        return view('kuesioner.index',['user'=>$user]);
     }
 
     /**
@@ -23,7 +29,8 @@ class KuesionerController extends Controller
      */
     public function create()
     {
-        return view('kuesioner.create');
+        $category =Category::all();
+        return view('kuesioner.create',['category'=>$category]);
     }
 
     /**
@@ -34,7 +41,15 @@ class KuesionerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'pertanyaan'=>'required'
+        ]);
+        $kuesioner = new Kuesioner;
+        $kuesioner->user_id = Auth()->user()->id;
+        $kuesioner->category_id=$request->get('kategori_kuesioner');
+        $kuesioner->question = $request->get('pertanyaan');
+        $kuesioner->save();
+        return redirect()->route('kuesioner.index');
     }
 
     /**

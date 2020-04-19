@@ -19,61 +19,28 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col" class="sort" data-sort="name">Project</th>
-                  <th scope="col" class="sort" data-sort="budget">Budget</th>
-                  <th scope="col" class="sort" data-sort="status">Status</th>
-
-                  <th scope="col"></th>
+                  <th scope="col" >No</th>
+                  <th scope="col" >Kategori</th>
+                  <th scope="col" >Pertanyaan</th>
+                  <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody class="list">
+
+                @foreach($user->categories as $category)
+                    @foreach($category->kuesioners as $row)
                 <tr>
                   <th scope="row">
-                    <div class="media align-items-center">
-                      <a href="#" class="avatar rounded-circle mr-3">
-                        <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
-                      </a>
-                      <div class="media-body">
-                        <span class="name mb-0 text-sm">Argon Design System</span>
-                      </div>
-                    </div>
+                      {{$loop->iteration}}
                   </th>
                   <td class="budget">
-                    $2500 USD
+                  {{$category->name}}
                   </td>
                   <td>
-                    <span class="badge badge-dot mr-4">
-                      <i class="bg-warning"></i>
-                      <span class="status">pending</span>
-                    </span>
+                    {{$row->question}}
                   </td>
-                  <td>
-                    <div class="avatar-group">
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                        <img alt="Image placeholder" src="../assets/img/theme/team-1.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                        <img alt="Image placeholder" src="../assets/img/theme/team-2.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                        <img alt="Image placeholder" src="../assets/img/theme/team-3.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg">
-                      </a>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <span class="completion mr-2">60%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right">
+
+                  <td class="text">
                     <div class="dropdown">
                       <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-ellipsis-v"></i>
@@ -86,7 +53,8 @@
                     </div>
                   </td>
                 </tr>
-
+                    @endforeach
+                @endforeach
               </tbody>
             </table>
           </div>
