@@ -16,21 +16,25 @@
           </div>
         </div>
         <div class="card-body " >
-          <form>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="form-group">
-                    <label class="form-control-label" for="nama_kuesioner">Nama kuesioner</label>
-                    <input type="text" id="nama_kuesioner" class="form-control" >
-                  </div>
+            <form>
+                <div class="form-group">
+                  <label for="kategori_kuesioer">Kategori kuesioner</label>
+                  <select class="form-control" id="kategori_kuesioer" name="kategori_kuesioer">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
                 </div>
-              </div>
-              <button type="submit" class="btn btn-primary" name="simpan_kuesioner">Simpan</button>
-            </div>
-            <hr class="my-4">
-            </div>
-          </form>
+
+                <div class="form-group">
+                  <label for="pertanyaan">Pertanyaan</label>
+                  <textarea class="form-control" id="pertanyaan" name="pertanyaan" required rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" name="simpan_kuesioner">Simpan</button>
+              </form>
+
         </div>
       </div>
     </div>

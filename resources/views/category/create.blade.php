@@ -1,10 +1,6 @@
 @extends('master')
 @section('content')
-
-
-
 <div class="row">
-
     <div class="col-xl-8 order-xl-1 " >
       <div class="card" >
         <div class="card-header">
@@ -16,13 +12,19 @@
           </div>
         </div>
         <div class="card-body " >
-          <form>
+            @if($errors->any())
+            <div class="alert alert-danger" role="alert">
+                {{$errors->first()}}
+            </div>
+            @endif
+        <form method="POST" action="{{route('category.store')}}">
+            @csrf
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-8">
                   <div class="form-group">
-                    <label class="form-control-label" for="nama_kategori">Nama Kategori</label>
-                    <input type="text" id="nama_kategori" class="form-control" >
+                    <label class="form-control-label" for="category">Nama Kategori</label>
+                    <input type="text" id="category" name="category" required class="form-control" >
                   </div>
                 </div>
               </div>
@@ -34,6 +36,7 @@
         </div>
       </div>
     </div>
-  </div>
+
+
 
 @endsection
