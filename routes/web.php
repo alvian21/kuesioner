@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin',
             ], function () {
                 Route::get('/home', 'HomeController@index')->name('home');
 
+                Route::get('/cek','CategoryController@cek');
                 Route::resource('category','CategoryController');
                 Route::resource('kuesioner','KuesionerController');
             });
