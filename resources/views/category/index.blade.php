@@ -78,19 +78,50 @@
     </div>
 @endsection
 @section('script')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 $(document).ready(function(){
     $('.hapus').on('click',function(){
         var id = $(this).data('id');
-        ajax();
-        $.ajax({
-            url:'/admin/category/'+id,
-            method:'DELETE',
-            data:{'delete':1,'id':id},
-            success:function(data){
-                console.log(data);
+
+        swal({
+            title: "Apa kamu yakin?",
+            text: "Setelah dihapus, Anda tidak akan dapat memulihkan data ini!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                ajax();
+                $.ajax({
+                        url:'/admin/category/'+id,
+                        method:'DELETE',
+                        data:{'delete':1,'id':id},
+                        success:function(data){
+                        if(data['result']==0){
+                            swal({
+                                title: "Gagal",
+                                text: data['notif'],
+                                icon: "error",
+                                button: "Ok",
+                                });
+                        }else if(data['result']==1){
+                            swal({
+                                title: "Success",
+                                text: data['notif'],
+                                icon: "success",
+                                button: "Ok",
+                                });
+                                window.setTimeout(function(){window.location.reload()}, 1000);
+                        }
+
+
+                        }
+                    });
             }
-        });
+            });
+
     });
 
     function ajax()

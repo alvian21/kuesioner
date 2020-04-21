@@ -113,13 +113,10 @@ class CategoryController extends Controller
 
         $data = '';
         foreach ($arr as $value) {
-
-            if ($request->get('id') != !empty($value['id'])) {
+            if ($request->get('id') != $value['id']) {
                 $data = $request->get('id');
             } elseif ($request->get('id') == !empty($value['id'])) {
                 $data = 'null';
-            }elseif(empty($value)){
-                $data = $request->get('id');
             }
         }
 
@@ -135,7 +132,7 @@ class CategoryController extends Controller
         }
 
         $return = array('result' => $success, 'notif' => $delete);
-        print_r($return);
+        return $return;
 
     }
 
