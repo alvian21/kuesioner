@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\GuestBook;
 
 class BookController extends Controller
 {
@@ -34,7 +35,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new GuestBook();
+        $data->name = $request->get('nama');
+        $data->gender = $request->get('jenis_kelamin');
+        $data->age = $request->get('umur');
+        $data->job = $request->get('pekerjaan');
+        $data->telephone = $request->get('nohp');
+        if($data->save()){
+            return view('book.kuesioner',['name'=>$request->get('name')]);
+        }
+
     }
 
     /**
@@ -81,4 +91,9 @@ class BookController extends Controller
     {
         //
     }
+
+    // public function kuesioner()
+    // {
+    //     $data= $this->store()
+    // }
 }

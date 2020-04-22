@@ -28,7 +28,7 @@
             <div class="text-center text-muted mb-4">
              <b> <h2>Buku Tamu</h2></b>
             </div>
-            <form method="POST" role="form" action="#">
+        <form method="POST" role="form" action="{{route('bukutamu.store')}}">
                 @csrf
               <div class="form-group mb-3">
                 <label for="nama">Nama</label>

@@ -18,9 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/coba', function(){
-    return view('auth.login1');
-});
 
 Route::group(['prefix' => 'data'], function () {
 
