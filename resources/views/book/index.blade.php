@@ -28,55 +28,58 @@
             <div class="text-center text-muted mb-4">
              <b> <h2>Buku Tamu</h2></b>
             </div>
-            <form method="POST" role="form" action="{{ route('login') }}">
+            <form method="POST" role="form" action="#">
                 @csrf
               <div class="form-group mb-3">
+                <label for="nama">Nama</label>
                 <div class="input-group input-group-merge input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    <span class="input-group-text"><i class="ni "></i></span>
                   </div>
-                  <input value="{{ old('email') }}" required autocomplete="email" autofocus class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" type="email">
-                  @error('email')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
+                  <input required autocomplete="nama" id="nama" autofocus class="form-control " name="nama" placeholder="Nama" type="text">
                 </div>
               </div>
               <div class="form-group mb-3">
+                  <label for="jenis_kelamin">Jenis Kelamin</label>
                 <div class="input-group input-group-merge input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                  </div>
-                  <input value="{{ old('email') }}" required autocomplete="email" autofocus class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" type="email">
-                  @error('email')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
+                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                    <option value="null">Pilih Jenis Kelamin</option>
+                    <option value="Laki_laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                    </select>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group mb-3">
+                <label for="umur">Umur</label>
                 <div class="input-group input-group-merge input-group-alternative">
+
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    <span class="input-group-text"><i class="ni "></i></span>
                   </div>
-                  <input class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password" type="password">
-                  @error('password')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                    @enderror
+                  <input required autocomplete="umur" id="umur" autofocus class="form-control " name="umur" placeholder="Contoh: 20 tahun" type="text">
                 </div>
               </div>
-              <div class="custom-control custom-control-alternative custom-checkbox">
-                <input class="custom-control-input"  type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                <label class="custom-control-label" for="remember">
-                  <span class="text-muted">Remember me</span>
-                </label>
+              <div class="form-group mb-3">
+                <label for="pekerjaan">Pekerjaan</label>
+                <div class="input-group input-group-merge input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni "></i></span>
+                  </div>
+                  <input required autocomplete="Pekerjaan" id="pekerjaan" autofocus class="form-control " name="pekerjaan" placeholder="Pekerjaan" type="text">
+                </div>
               </div>
+              <div class="form-group mb-3">
+                <label for="nohp">No Hp</label>
+                <div class="input-group input-group-merge input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni "></i></span>
+                  </div>
+                  <input required autocomplete="nohp" id="nohp" autofocus class="form-control " name="nohp" placeholder="contoh: 08123455678" type="text">
+                </div>
+              </div>
+
               <div class="text-center">
-                <button type="submit" class="btn btn-primary my-4">Login</button>
+                <button type="submit" class="btn btn-primary my-4">Next</button>
               </div>
             </form>
           </div>
