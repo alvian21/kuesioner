@@ -22,6 +22,11 @@ Route::get('/coba', function(){
     return view('auth.login1');
 });
 
+Route::group(['prefix' => 'data'], function () {
+
+            Route::resource('bukutamu', 'BookController');
+});
+
 
 Auth::routes();
 

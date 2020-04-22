@@ -98,9 +98,6 @@ class CategoryController extends Controller
     public function destroy($id, Request $request)
     {
         $cek = Auth::user();
-
-
-
         $arr = [];
         foreach ($cek->categories as $row) {
             foreach ($row->kuesioners as $data) {
@@ -110,7 +107,6 @@ class CategoryController extends Controller
                 }
             }
         }
-
         $data = '';
         foreach ($arr as $value) {
             if ($request->get('id') != $value['id']) {
