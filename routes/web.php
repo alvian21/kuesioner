@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'data'], function () {
 
+            Route::get('/kuesioner','BookKuesionerController@index')->middleware('CheckData');
             Route::resource('bukutamu', 'BookController');
 });
 

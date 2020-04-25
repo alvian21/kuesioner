@@ -1,4 +1,4 @@
-@extends('auth.main')
+@extends('book.main')
 
 @section('title')
     Buku Tamu

@@ -42,7 +42,7 @@ class BookController extends Controller
         $data->job = $request->get('pekerjaan');
         $data->telephone = $request->get('nohp');
         if($data->save()){
-            return view('book.kuesioner',['name'=>$request->get('name')]);
+            return redirect('data/kuesioner');
         }
 
     }

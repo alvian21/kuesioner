@@ -19,7 +19,6 @@ class CheckData
 
         if(in_array($request->get('name'),$name)){
             return $next($request);
-
         }
         return redirect('/data/bukutamu');
     }
