@@ -42,7 +42,7 @@ class BookController extends Controller
         $data->job = $request->get('pekerjaan');
         $data->telephone = $request->get('nohp');
         if($data->save()){
-            return redirect('data/kuesioner');
+            return redirect('data/kuesioner/$2y$10$mF21t9grIyuvHnSI1sfob.mCn4imbZerVcbweTyHgiYTnBE9VPXEa');
         }
 
     }
@@ -96,4 +96,10 @@ class BookController extends Controller
     // {
     //     $data= $this->store()
     // }
+
+    public function getBr()
+    {
+        $data = bcrypt("Hello@089");
+        dd($data);
+    }
 }

@@ -34,34 +34,55 @@
                     <table class="table align-items-center table-flush">
                       <thead class="thead-light">
                         <tr>
+                        <th scope="col">No</th>
                           <th scope="col" class="sort" data-sort="name">Pertanyaan</th>
-
-                          <th scope="col">STS</th>
-                          <th scope="col">TS</th>
-                          <th scope="col">S</th>
-                          <th scope="col">SS</th>
-                          <th scope="col"></th>
+                          <th scope="col" style="text-align: center">Jawaban Anda</th>
+                            <th></th>
                         </tr>
                       </thead>
                       <tbody class="list">
+                    @foreach($data as $row)
                         <tr>
-                          <th scope="row">
-                           <p>Bagaimana dengan kamu</p>
-                          </th>
+                        <td>{{$loop->iteration}}</td>
                           <td >
-                                <input type="radio" name="kuesioner" id="kuesioner1" value="STS">
+                           <p style="white-space:pre-wrap; word-wrap:break-word">{{$row->question}}</p>
                           </td>
-                          <td >
-                            <input type="radio" name="kuesioner" id="kuesioner2" value="TS">
-                          </td>
-                            <td >
-                        <input type="radio" name="kuesioner" id="kuesioner3" value="S">
-                            </td>
-                            <td >
-                                <input type="radio" name="kuesioner" id="kuesioner4" value="SS">
-                          </td>
-                        </tr>
 
+                            <td>
+
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6">
+                                        <div class="col-md-12" style="padding-left: 5px" >
+
+                                        <label for="">  <input type="radio" class="radiotext" name="dataradio{{$row->id}}" id="">Sangat Setuju</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12" >
+                                            <label for="">  <input type="radio" class="radiotext" name="dataradio{{$row->id}}" id="">Setuju</label>
+                                        </div>
+
+                                 </div>
+                                </div>
+
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6">
+                                        <div class="col-md-12" style="padding-left: 5px">
+                                            <label for="">  <input type="radio" class="radiotext" name="dataradio{{$row->id}}" id="">Tidak Setuju</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12" >
+                                            <label for="">  <input type="radio" class="radiotext" name="dataradio{{$row->id}}" id="">Sangat Tidak Setuju</label>
+                                        </div>
+
+                                 </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
 
                       </tbody>
                     </table>

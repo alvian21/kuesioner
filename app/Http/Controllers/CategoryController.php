@@ -129,7 +129,6 @@ class CategoryController extends Controller
 
         $return = array('result' => $success, 'notif' => $delete);
         return $return;
-
     }
 
 
