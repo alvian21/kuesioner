@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\GuestBook;
+use App\Kuesioner;
+use Illuminate\Support\Facades\Redirect;
 
 class BookController extends Controller
 {
@@ -42,7 +44,9 @@ class BookController extends Controller
         $data->job = $request->get('pekerjaan');
         $data->telephone = $request->get('nohp');
         if($data->save()){
-            return redirect('data/kuesioner/$2y$10$mF21t9grIyuvHnSI1sfob.mCn4imbZerVcbweTyHgiYTnBE9VPXEa');
+            $user = $data;
+            $data = Kuesioner::all();
+            return view('book.kuesioner',['user'=>$user,'data'=>$data]);
         }
 
     }

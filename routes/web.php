@@ -23,7 +23,7 @@ Route::group(['prefix' => 'data'], function () {
             Route::post('/post','BookKuesionerController@postData');
             Route::get('/id','BookKuesionerController@getData');
             Route::get('/dd','BookController@getBr');
-            Route::get('/kuesioner/$2y$10$mF21t9grIyuvHnSI1sfob.mCn4imbZerVcbweTyHgiYTnBE9VPXEa','BookKuesionerController@index');
+            Route::get('/kuesioner/$2y$10$mF21t9grIyuvHnSI1sfob.mCn4imbZerVcbweTyHgiYTnBE9VPXEa','BookKuesionerController@index')->name('data.kuesioner');
             Route::resource('bukutamu', 'BookController');
 });
 

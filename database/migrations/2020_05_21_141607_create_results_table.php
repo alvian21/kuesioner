@@ -15,6 +15,11 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('data_id');
+            $table->unsignedBigInteger('kuesioner_id');
+            $table->foreign('kuesioner_id')->references('id')->on('kuesioners')->onDelete('cascade');
+            $table->unsignedBigInteger('GuestBook_id');
+            $table->foreign('GuestBook_id')->references('id')->on('guest_books')->onDelete('cascade');
             $table->timestamps();
         });
     }
