@@ -18,4 +18,14 @@ class BookKuesionerController extends Controller
 
        return response()->json(['data'=>$data]);
    }
+
+   public function postData(Request $request)
+   {
+
+        foreach($request->all() as $row){
+          foreach($row as $col){
+             
+          }
+        }
+   }
 }

@@ -42,7 +42,9 @@
                       </thead>
                       <tbody class="list">
                     @foreach($data as $row)
+
                         <tr>
+                            <input type="hidden" name="dataid[]" class="iduser" value="{{$row->id}}" >
                         <td>{{$loop->iteration}}</td>
                           <td >
                            <p style="white-space:pre-wrap; word-wrap:break-word">{{$row->question}}</p>
@@ -107,49 +109,42 @@
 <script>
 
     $(document).ready(function(){
-
+        function ajax()
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        }
 
 
         $('#next').on('click',function(){
-            var hasil = $('input[type=radio]:checked');
-            for (var index = 0; index < hasil.length; index++) {
 
-            console.log(hasil[index].value);
-         }
+                var idarray = [];
+                $('.iduser').each(function(){
+                idarray.push($(this).val());
+                });
+                var hasil = $('input[type=radio]:checked');
+                var array=[];
+                for (var index = 0; index < hasil.length; index++) {
+                    var a = hasil[index].value;
+                    var b = idarray[index];
+                    var dataid = {};
+                    var kuesionerid = {};
+                    var data = {dataid:a,kuesionerid:b};
+                        array.push(data);
+                }
+                    ajax();
+                    $.ajax({
+                        url:'/data/post',
+                        method:'POST',
+                        data:{array},
+                        success:function(data){
+                            console.log(data);
+                        }
+                    });
         })
-
-    //    for (var index = 0; index < hasil.length; index++) {
-    //     if(hasil[index].prop("checked")){
-    //         console.log("opo");
-    //     }
-        // console.log(hasil[index]);
-
-    //    }
-
-    //    $.ajax({
-    //        url:'/data/id',
-    //        method:'GET',
-    //        dataType:'json',
-    //        success:function(rtndata){
-    //            $.each(rtndata, function(dataType,data){
-    //                 var array = [];
-    //         $(document).on("change","input[type=radio]",function(){
-    //                     var ac
-    //                     rtndata['data'].forEach((res) => {
-    //                     var result = res['id'];
-    //                        ac =$('input[name="dataradio'+result+'"]');
-    //                     });
-
-    //                     for (let index = 0; index < ac.length; index++) {
-    //                             if(ac[index].checked){
-    //                                 console.log(ac[index].value);
-    //                             }
-    //                     }
-
-    //                 });
-    //            });
-    //        }
-    //    })
     });
 </script>
 
