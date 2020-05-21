@@ -54,13 +54,13 @@
                                     <div class="col-md-6">
                                         <div class="col-md-12" style="padding-left: 5px" >
 
-                                        <label for="">  <input type="radio" class="radiotext" name="dataradio{{$row->id}}" id="">Sangat Setuju</label>
+                                        <label for="">  <input type="radio" value="4"  name="dataradio{{$row->id}}" >Sangat Setuju</label>
 
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="col-md-12" >
-                                            <label for="">  <input type="radio" class="radiotext" name="dataradio{{$row->id}}" id="">Setuju</label>
+                                            <label for="">  <input type="radio" value="3"  name="dataradio{{$row->id}}" >Setuju</label>
                                         </div>
 
                                  </div>
@@ -69,13 +69,13 @@
                                 <div class="row" style="text-align: center">
                                     <div class="col-md-6">
                                         <div class="col-md-12" style="padding-left: 5px">
-                                            <label for="">  <input type="radio" class="radiotext" name="dataradio{{$row->id}}" id="">Tidak Setuju</label>
+                                            <label for="">  <input type="radio" value="2"  name="dataradio{{$row->id}}" >Tidak Setuju</label>
                                         </div>
 
                                     </div>
                                     <div class="col-md-6">
                                         <div class="col-md-12" >
-                                            <label for="">  <input type="radio" class="radiotext" name="dataradio{{$row->id}}" id="">Sangat Tidak Setuju</label>
+                                            <label for="">  <input type="radio" value="1"  name="dataradio{{$row->id}}" >Sangat Tidak Setuju</label>
                                         </div>
 
                                  </div>
@@ -88,7 +88,7 @@
                     </table>
                   </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary my-4">Next</button>
+                <button type="button" id="next" class="btn btn-primary my-4">Next</button>
               </div>
             </form>
           </div>
@@ -100,4 +100,57 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('script')
+
+<script>
+
+    $(document).ready(function(){
+
+
+
+        $('#next').on('click',function(){
+            var hasil = $('input[type=radio]:checked');
+            for (var index = 0; index < hasil.length; index++) {
+
+            console.log(hasil[index].value);
+         }
+        })
+
+    //    for (var index = 0; index < hasil.length; index++) {
+    //     if(hasil[index].prop("checked")){
+    //         console.log("opo");
+    //     }
+        // console.log(hasil[index]);
+
+    //    }
+
+    //    $.ajax({
+    //        url:'/data/id',
+    //        method:'GET',
+    //        dataType:'json',
+    //        success:function(rtndata){
+    //            $.each(rtndata, function(dataType,data){
+    //                 var array = [];
+    //         $(document).on("change","input[type=radio]",function(){
+    //                     var ac
+    //                     rtndata['data'].forEach((res) => {
+    //                     var result = res['id'];
+    //                        ac =$('input[name="dataradio'+result+'"]');
+    //                     });
+
+    //                     for (let index = 0; index < ac.length; index++) {
+    //                             if(ac[index].checked){
+    //                                 console.log(ac[index].value);
+    //                             }
+    //                     }
+
+    //                 });
+    //            });
+    //        }
+    //    })
+    });
+</script>
+
 @endsection

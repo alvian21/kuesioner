@@ -11,4 +11,11 @@ class BookKuesionerController extends Controller
     $data = Kuesioner::all();
     return view('book.kuesioner',['data'=>$data]);
    }
+
+   public function getData()
+   {
+       $data = Kuesioner::select('id')->get();
+
+       return response()->json(['data'=>$data]);
+   }
 }
