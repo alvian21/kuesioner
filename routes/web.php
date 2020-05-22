@@ -32,10 +32,10 @@ Route::group(['prefix' => 'data'], function () {
 Auth::routes();
 
 Route::group(['prefix' => 'admin',
-                'middelware'=>'Auth'
+                'middleware'=>'auth'
             ], function () {
-                Route::get('/home', 'HomeController@index')->name('home');
-
+                // Route::get('/home', 'HomeController@index')->name('home');
+                Route::get('/dashboard','DashboardController@index')->name('dashboard.index');
                 Route::get('/cek','CategoryController@cek');
                 Route::resource('category','CategoryController');
                 Route::resource('kuesioner','KuesionerController');

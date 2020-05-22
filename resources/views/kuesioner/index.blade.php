@@ -37,7 +37,8 @@
                   {{$category->name}}
                   </td>
                   <td>
-                    {{$row->question}}
+                      <p style="white-space:pre-wrap; word-wrap:break-word"> {{$row->question}}</p>
+
                   </td>
 
                   <td class="text">

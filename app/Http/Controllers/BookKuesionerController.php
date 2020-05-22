@@ -35,14 +35,20 @@ class BookKuesionerController extends Controller
                 array_push($array, $x);
             }
         }
+
+        // return $array;
         foreach ($array as $hasil) {
             $data = array(
                 'data_id' => $hasil['data_id'],
                 'kuesioner_id' => $hasil['kuesioner_id'],
                 'GuestBook_id' => $hasil['GuestBook_id']
             );
-            Result::insert($data);
+           Result::insert($data);
+
+
         }
+
+        return array('result'=>'1');
     }
 
     public function hitung()
@@ -60,6 +66,8 @@ class BookKuesionerController extends Controller
             $x['kuesioner_id'] = $value->kuesioner_id;
             array_push($arr, $x);
         }
-        dd($arr);
+
+
+
     }
 }

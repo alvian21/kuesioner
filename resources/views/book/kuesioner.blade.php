@@ -107,7 +107,7 @@
 @endsection
 
 @section('script')
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 
     $(document).ready(function(){
@@ -149,7 +149,18 @@
                         method:'POST',
                         data:{array},
                         success:function(data){
-                            console.log(data);
+
+                           if(data['result']=='1'){
+                            swal({
+                                title: "Berhasil",
+                                text: "Terima kasih telah mengisi kuesioner ini",
+                                icon: "success",
+                                button: "Ok",
+                                });
+
+                                setTimeout(function(){window.location.href="/"},2000);
+
+                           }
                         }
                     });
         })
