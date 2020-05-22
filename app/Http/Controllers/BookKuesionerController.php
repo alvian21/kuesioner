@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Kuesioner;
 use Illuminate\Http\Request;
 use App\Result;
+use Dotenv\Result\Result as ResultResult;
 
 class BookKuesionerController extends Controller
 {
@@ -42,5 +43,23 @@ class BookKuesionerController extends Controller
             );
             Result::insert($data);
         }
+    }
+
+    public function hitung()
+    {
+        $result = Result::groupBy('kuesioner_id')->selectRaw('sum(data_id) as sum ,kuesioner_id')->pluck('sum', 'kuesioner_id');
+
+        $result = array($result);
+
+        $arr = [];
+        $a = Result::select('kuesioner_id')->groupBy('kuesioner_id')->get();
+        $b = Result::select('GuestBook_id')->groupBy('GuestBook_id')->count();
+
+        foreach ($a as $key => $value) {
+            $x['hasil'] = $result[0][$value->kuesioner_id] / $b;
+            $x['kuesioner_id'] = $value->kuesioner_id;
+            array_push($arr, $x);
+        }
+        dd($arr);
     }
 }
