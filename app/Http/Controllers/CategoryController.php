@@ -74,7 +74,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = Category::find($id);
+        return $id;
     }
 
     /**
@@ -86,7 +87,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->get('id')){
+            $data = Category::find($request->get('id'));
+            $data->name= $request->get('category');
+            if($data->save()){
+                return array('result'=>'1');
+            }
+
+        }
     }
 
     /**

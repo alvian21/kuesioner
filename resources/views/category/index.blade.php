@@ -36,7 +36,8 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="#">Edit</a>
+
+                        <button class="dropdown-item edit" data-id="{{$row->id}}">Edit</button>
                       <button class="dropdown-item hapus" data-id="{{$row->id}}">Hapus</button>
 
                       </div>
@@ -76,6 +77,36 @@
         </div>
       </div>
     </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="kategorimodal" tabindex="-1" role="dialog" aria-labelledby="kategorimodalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="kategorimodalLabel">Edit Kategori</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <input type="hidden" name="idkategori" id="idkategori">
+                <div class="form-group">
+                  <label for="kategori">Kategori</label>
+                  <input type="text" class="form-control" id="kategori" >
+
+                </div>
+
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="updatekategori">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 @section('script')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -123,6 +154,43 @@ $(document).ready(function(){
             });
 
     });
+
+    $('.edit').on('click', function(){
+        $('#kategorimodal').modal('show');
+        var id = $(this).data('id');
+        ajax();
+        $.ajax({
+            url:'/admin/category/'+id+'/edit',
+            method:'GET',
+            success:function(data){
+               $('#kategori').val(data['name']);
+               $('#idkategori').val(data['id']);
+            }
+        });
+    });
+
+    $('#updatekategori').on('click',function(){
+        var category = $('#kategori').val();
+        var id = $('#idkategori').val();
+        ajax();
+        $.ajax({
+            url:'/admin/category/update',
+            method:'PUT',
+            data:{'id':id,'category':category},
+            success:function(data){
+                $('#kategorimodal').modal('hide');
+                if(data['result']=='1'){
+                    swal({
+                                title: "Success",
+                                text: "Kategori Berhasil di update",
+                                icon: "success",
+                                button: "Ok",
+                                });
+                                window.setTimeout(function(){window.location.reload()}, 2000);
+                }
+            }
+        });
+    })
 
     function ajax()
         {
