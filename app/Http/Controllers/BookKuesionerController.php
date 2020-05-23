@@ -74,9 +74,4 @@ class BookKuesionerController extends Controller
 
     }
 
-    public function test()
-    {
-        $data = DB::table('guest_books')->latest()->first();
-        dd($data->id);
-    }
 }

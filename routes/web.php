@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin',
                 'middleware'=>'auth'
             ], function () {
                 // Route::get('/home', 'HomeController@index')->name('home');
+                Route::get('/guestbook','GuestBookController@index')->name('guest.index');
                 Route::get('/fetch','DashboardController@fetch');
                 Route::get('/dashboard','DashboardController@index')->name('dashboard.index');
                 Route::get('/cek','CategoryController@cek');

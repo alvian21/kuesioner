@@ -29,6 +29,12 @@
                     <span class="nav-link-text">Kuesioner</span>
                   </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('guest.index')}}">
+                    <i class="ni ni-bullet-list-67 text-default"></i>
+                    <span class="nav-link-text">Buku tamu</span>
+                  </a>
+            </li>
           </ul>
           <!-- Divider -->
           <hr class="my-3">
