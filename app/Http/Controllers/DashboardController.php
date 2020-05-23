@@ -29,7 +29,7 @@ class DashboardController extends Controller
         $b = Result::select('GuestBook_id')->groupBy('GuestBook_id')->count();
 
         foreach ($a as $key => $value) {
-            $x['hasil'] = $result[0][$value->kuesioner_id] / $b;
+            $x['hasil'] = (($result[0][$value->kuesioner_id] * 100) / 4) / $b;
             $x['kuesioner_id'] = $value->kuesioner_id;
             array_push($arr, $x);
         }
@@ -53,5 +53,13 @@ class DashboardController extends Controller
         $count = Count::all();
 
         return view('dashboard.index', ['kuesioner' => $kuesioner,'count'=>$count]);
+    }
+
+
+    public function fetch()
+    {
+        $count = Count::all();
+
+        return response()->json(['count'=>$count]);
     }
 }

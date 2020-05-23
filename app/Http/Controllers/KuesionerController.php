@@ -101,4 +101,13 @@ class KuesionerController extends Controller
             echo 'berhasil';
         }
     }
+
+    public function editData(Request $request)
+    {
+        if($request->get('edit')){
+            $id = $request->get('id');
+            $kuesioner = Kuesioner::find($id);
+            return $kuesioner;
+        }
+    }
 }

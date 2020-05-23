@@ -47,7 +47,8 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="#">Edit</a>
+
+                        <button class="dropdown-item edit" data-id="{{$row->id}}">Edit</button>
                       <button class="dropdown-item hapus" data-id="{{$row->id}}">Hapus</button>
                       </div>
                     </div>
@@ -87,6 +88,33 @@
         </div>
       </div>
     </div>
+
+ <!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="pertanyaan">Pertanyaan</label>
+                <textarea name="" class="form-control" id="pertanyaan" cols="20" rows="10"></textarea>
+                </div>
+
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 
@@ -120,6 +148,21 @@
 
         });
 
+        $('.edit').on('click',function(){
+            $('#editModal').modal('show');
+
+            var id = $(this).data('id');
+
+            ajax();
+            $.ajax({
+                url:'/admin/editdata',
+                method:'GET',
+                data:{'edit':1,'id':id},
+                success:function(data){
+                    $('#pertanyaan').val(data['question']);
+                }
+            });
+        })
 
         function ajax()
         {
