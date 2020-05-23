@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin',
                 Route::get('/fetch','DashboardController@fetch');
                 Route::get('/dashboard','DashboardController@index')->name('dashboard.index');
                 Route::get('/cek','CategoryController@cek');
+                Route::post('/updateData','KuesionerController@UpdateData');
                 Route::get('/editdata','KuesionerController@editData');
                 Route::resource('category','CategoryController');
                 Route::resource('kuesioner','KuesionerController');

@@ -101,6 +101,7 @@
         </div>
         <div class="modal-body">
             <form>
+                <input type="hidden" name="idpertanyaan" id="idpertanyaan">
                 <div class="form-group">
                   <label for="pertanyaan">Pertanyaan</label>
                 <textarea name="" class="form-control" id="pertanyaan" cols="20" rows="10"></textarea>
@@ -110,7 +111,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Simpan</button>
+          <button type="button" class="btn btn-primary" id="editsimpan">Simpan</button>
         </div>
       </div>
     </div>
@@ -160,10 +161,37 @@
                 data:{'edit':1,'id':id},
                 success:function(data){
                     $('#pertanyaan').val(data['question']);
+                    $('#idpertanyaan').val(data['id']);
                 }
             });
         })
 
+        $('#editsimpan').on('click',function(){
+            var question = $('#pertanyaan').val();
+            var id = $('#idpertanyaan').val();
+
+            ajax();
+
+            $.ajax({
+                url:'/admin/updateData',
+                method:'POST',
+                data:{'question':question,'id':id},
+                success:function(data){
+                    if(data['result']=='1'){
+                        $('#editModal').modal('hide');
+                        swal({
+                                title: "Berhasil",
+                                text: "Data berhasil di update",
+                                icon: "success",
+                                button: "Ok",
+                                });
+
+                                setTimeout(function(){window.location.href="/admin/kuesioner"},2000);
+
+                    }
+                }
+            });
+        });
         function ajax()
         {
             $.ajaxSetup({

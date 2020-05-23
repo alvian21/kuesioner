@@ -136,9 +136,6 @@ class CategoryController extends Controller
     public function cek(Request $request)
     {
         $cek = Auth::user();
-
-
-
         $arr = [];
         foreach ($cek->categories as $row) {
             foreach ($row->kuesioners as $data) {

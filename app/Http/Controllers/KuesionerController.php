@@ -110,4 +110,14 @@ class KuesionerController extends Controller
             return $kuesioner;
         }
     }
+
+    public function UpdateData(Request $request)
+    {
+        $data = Kuesioner::find($request->get('id'));
+        $data->question = $request->get('question');
+        if($data->save()){
+            return array('result'=>'1');
+        }
+    }
+
 }
