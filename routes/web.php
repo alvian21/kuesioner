@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'data'], function () {
+            Route::get('/test','BookKuesionerController@test');
+            Route::get('/kuesioner','BookKuesionerController@index');
             Route::post('/post','BookKuesionerController@postData');
             Route::get('/hitung','BookKuesionerController@hitung');
             Route::get('/id','BookKuesionerController@getData');

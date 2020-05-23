@@ -43,11 +43,16 @@ class BookController extends Controller
         $data->age = $request->get('umur');
         $data->job = $request->get('pekerjaan');
         $data->telephone = $request->get('nohp');
-        if($data->save()){
-            $user = $data;
-            $data = Kuesioner::all();
-            return view('book.kuesioner',['user'=>$user,'data'=>$data]);
+        $guest = GuestBook::where('telephone',$request->get('nohp'))->first();
+        $data->save();
+        if($guest){
+            $arr = array('result'=>'1');
+        }else{
+            $arr = array('result'=>'0');
         }
+
+        return $arr;
+
 
     }
 

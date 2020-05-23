@@ -79,7 +79,7 @@
               </div>
 
               <div class="text-center">
-                <button type="submit" class="btn btn-primary my-4">Next</button>
+                <button type="button" class="btn btn-primary my-4" id="btnsubmit">Submit</button>
               </div>
             </form>
           </div>
@@ -91,4 +91,54 @@
       </div>
     </div>
   </div>
+@endsection
+@section('script')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+        $(document).ready(function(){
+            $('#btnsubmit').on('click',function(){
+                var nama = $('#nama').val();
+                var jenis_kelamin = $('#jenis_kelamin').val();
+                var umur = $('#umur').val();
+                var pekerjaan = $('#pekerjaan').val();
+                var nohp = $('#nohp').val();
+
+                ajax();
+                $.ajax({
+                    url:'/data/bukutamu',
+                    method:'POST',
+                    data:{
+                        'nama':nama,
+                        'jenis_kelamin':jenis_kelamin,
+                        'umur':umur,
+                        'pekerjaan':pekerjaan,
+                        'nohp':nohp
+                    },
+                    success:function(data){
+                       if(data['result']=='1'){
+                        swal({
+                                title: "Berhasil",
+                                text: "Terima kasih telah mengisi buku tamu",
+                                icon: "success",
+                                button: "Ok",
+                                });
+
+                           setTimeout(function(){window.location.href='/'},1500)
+                       }else if(data['result']=='0'){
+                        setTimeout(function(){window.location.href='/data/kuesioner'},1500)
+                       }
+                    }
+                });
+            });
+
+            function ajax()
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        }
+        });
+ </script>
 @endsection

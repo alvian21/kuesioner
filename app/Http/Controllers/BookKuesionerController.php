@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Kuesioner;
 use Illuminate\Http\Request;
 use App\Result;
+use App\GuestBook;
 use Dotenv\Result\Result as ResultResult;
+use Illuminate\Support\Facades\DB;
 
 class BookKuesionerController extends Controller
 {
     public function index()
     {
         $data = Kuesioner::all();
-        // return view('book.kuesioner',['data'=>$data]);
+        return view('book.kuesioner',['data'=>$data]);
     }
 
     public function getData()
@@ -26,11 +28,12 @@ class BookKuesionerController extends Controller
     {
 
         $array = [];
+        $data = DB::table('guest_books')->latest()->first();
         foreach ($request->all() as $key => $value) {
             foreach ($value as $col) {
                 $x['data_id'] = $col['dataid'];
                 $x['kuesioner_id'] = $col['kuesionerid'];
-                $x['GuestBook_id'] = $col['guestid'];
+                $x['GuestBook_id'] = $data->id;
 
                 array_push($array, $x);
             }
@@ -69,5 +72,11 @@ class BookKuesionerController extends Controller
 
 
 
+    }
+
+    public function test()
+    {
+        $data = DB::table('guest_books')->latest()->first();
+        dd($data->id);
     }
 }

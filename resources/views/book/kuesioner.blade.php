@@ -45,7 +45,7 @@
                     @foreach($data as $row)
 
                         <tr>
-                        <input type="hidden" name="guestid[]" class="idguest" value="{{$user->id}}">
+                        {{-- <input type="hidden" name="guestid[]" class="idguest" value="{{$user->id}}"> --}}
                             <input type="hidden" name="dataid[]" class="idkuesioner" value="{{$row->id}}" >
                         <td>{{$loop->iteration}}</td>
                           <td >
@@ -127,20 +127,20 @@
                 $('.idkuesioner').each(function(){
                 idarray.push($(this).val());
                 });
-                var idguest = [];
-                $('.idguest').each(function(){
-                    idguest.push($(this).val());
-                })
+                // var idguest = [];
+                // $('.idguest').each(function(){
+                //     idguest.push($(this).val());
+                // })
                 var hasil = $('input[type=radio]:checked');
                 var array=[];
                 for (var index = 0; index < hasil.length; index++) {
                     var a = hasil[index].value;
                     var b = idarray[index];
-                    var c = idguest[index];
+                    // var c = idguest[index];
                     var dataid = {};
-                    var guestid = [];
+                    // var guestid = [];
                     var kuesionerid = {};
-                    var data = {dataid:a,kuesionerid:b,guestid:c};
+                    var data = {dataid:a,kuesionerid:b};
                         array.push(data);
                 }
                     ajax();
